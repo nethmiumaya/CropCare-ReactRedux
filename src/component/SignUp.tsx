@@ -10,7 +10,6 @@ const SignUp: React.FC = () => {
 
     const handleSubmit = async (e: React.FormEvent) => {
         e.preventDefault();
-        // Handle sign-up logic here
     };
 
     return (

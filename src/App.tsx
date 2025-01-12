@@ -1,9 +1,11 @@
 import { BrowserRouter as Router, Route, Routes } from 'react-router-dom';
 import { Provider } from 'react-redux';
-import { store } from './store/store.ts';
-import RootLayout from './component/RootLayout.tsx';
-import LoginForm from './component/LoginForm.tsx';
-import SignUp from './component/SignUp.tsx';
+import { store } from './store/store';
+import RootLayout from './component/RootLayout';
+import LoginForm from './component/LoginForm';
+import SignUp from './component/SignUp';
+import HomePage from './component/HomePage';
+
 
 function App() {
     return (
@@ -13,6 +15,7 @@ function App() {
                     <Route path="/" element={<RootLayout />}>
                         <Route index element={<LoginForm />} />
                         <Route path="signup" element={<SignUp />} />
+                        <Route path="home" element={<HomePage />} />
                     </Route>
                 </Routes>
             </Router>
