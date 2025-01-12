@@ -1,6 +1,6 @@
 import React, { useState } from 'react';
 import { useDispatch, useSelector } from 'react-redux';
-import { Link } from 'react-router-dom';
+import { Link, useNavigate } from 'react-router-dom';
 import type { RootState } from '../store/store';
 import { User, Lock } from 'lucide-react';
 import { loginFailure, loginStart, loginSuccess } from '../reducers/LoginReducer.ts';
@@ -13,6 +13,7 @@ const LoginForm: React.FC = () => {
     });
 
     const dispatch = useDispatch();
+    const navigate = useNavigate();
     const { isLoading, error } = useSelector((state: RootState) => state.auth);
 
     const handleSubmit = async (e: React.FormEvent) => {
@@ -24,6 +25,7 @@ const LoginForm: React.FC = () => {
 
             if (credentials.username && credentials.password) {
                 dispatch(loginSuccess(credentials.username));
+                navigate('/home'); // Navigate to the home page after successful login
             } else {
                 throw new Error('Please fill in all fields');
             }
