@@ -1,5 +1,8 @@
 import React, { useEffect, useState } from 'react';
+import { Route, Routes } from 'react-router-dom';
 import Sidebar from './Sidebar';
+import VehiclePage from './vehicle/VehiclePage.tsx';
+import StaffPage from './StaffPage.tsx';
 
 const HomePage: React.FC = () => {
     const [dateTime, setDateTime] = useState({
@@ -38,7 +41,11 @@ const HomePage: React.FC = () => {
                     </div>
                 </div>
                 <div className="w-full h-full mt-4 bg-white bg-opacity-70 rounded-lg">
-                    <iframe id="contentAreaFrame" className="w-full h-full rounded-lg" title="Content Area" src="/components/dashboardPage.html"></iframe>
+                    <Routes>
+                        <Route path="vehicle" element={<VehiclePage />} />
+                        <Route path="staff" element={<StaffPage />} />
+                        {/* Add other routes here */}
+                    </Routes>
                 </div>
             </div>
         </div>
