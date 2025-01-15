@@ -16,13 +16,13 @@ const Sidebar: React.FC = () => {
             </div>
             <nav className="flex flex-col gap-4 mt-8 flex-1">
                 <NavLink to="/home" className="bg-[#8b4513] text-white no-underline p-3 text-left text-lg transition-opacity duration-300 rounded-r-lg border-none hover:opacity-90 focus:outline-none">Dashboard</NavLink>
-                <NavLink to="/field" className="bg-[#8b4513] text-white no-underline p-3 text-left text-lg transition-opacity duration-300 rounded-r-lg border-none hover:opacity-90 focus:outline-none">Field</NavLink>
+                <NavLink to="/home/field" className="bg-[#8b4513] text-white no-underline p-3 text-left text-lg transition-opacity duration-300 rounded-r-lg border-none hover:opacity-90 focus:outline-none">Field</NavLink>
                 <NavLink to="/home/staff" className="bg-[#8b4513] text-white no-underline p-3 text-left text-lg transition-opacity duration-300 rounded-r-lg border-none hover:opacity-90 focus:outline-none">Staff</NavLink>
-                <NavLink to="/crop" className="bg-[#8b4513] text-white no-underline p-3 text-left text-lg transition-opacity duration-300 rounded-r-lg border-none hover:opacity-90 focus:outline-none">Crop</NavLink>
-                <NavLink to="/equipment" className="bg-[#8b4513] text-white no-underline p-3 text-left text-lg transition-opacity duration-300 rounded-r-lg border-none hover:opacity-90 focus:outline-none">Equipment</NavLink>
+                <NavLink to="/home/crop" className="bg-[#8b4513] text-white no-underline p-3 text-left text-lg transition-opacity duration-300 rounded-r-lg border-none hover:opacity-90 focus:outline-none">Crop</NavLink>
+                <NavLink to="/home/equipment" className="bg-[#8b4513] text-white no-underline p-3 text-left text-lg transition-opacity duration-300 rounded-r-lg border-none hover:opacity-90 focus:outline-none">Equipment</NavLink>
                 <NavLink to="/home/vehicle" className="bg-[#8b4513] text-white no-underline p-3 text-left text-lg transition-opacity duration-300 rounded-r-lg border-none hover:opacity-90 focus:outline-none">Vehicle</NavLink>
-                <NavLink to="/monitoring-log" className="bg-[#8b4513] text-white no-underline p-3 text-left text-lg transition-opacity duration-300 rounded-r-lg border-none hover:opacity-90 focus:outline-none">Monitoring Log</NavLink>
-                <NavLink to="/users" className="bg-[#8b4513] text-white no-underline p-3 text-left text-lg transition-opacity duration-300 rounded-r-lg border-none hover:opacity-90 focus:outline-none">Users</NavLink>
+                <NavLink to="/home/monitoring-log" className="bg-[#8b4513] text-white no-underline p-3 text-left text-lg transition-opacity duration-300 rounded-r-lg border-none hover:opacity-90 focus:outline-none">Monitoring Log</NavLink>
+                <NavLink to="/home/users" className="bg-[#8b4513] text-white no-underline p-3 text-left text-lg transition-opacity duration-300 rounded-r-lg border-none hover:opacity-90 focus:outline-none">Users</NavLink>
                 <button className="mt-auto bg-[#8b4513] text-white no-underline p-3 text-left text-lg transition-opacity duration-300 rounded-r-lg border-none hover:opacity-90 focus:outline-none" onClick={handleLogout}>Logout</button>
             </nav>
         </div>

@@ -1,8 +1,9 @@
 import React, { useEffect, useState } from 'react';
 import { Route, Routes } from 'react-router-dom';
-import Sidebar from '../component/SideBar.tsx';
-import Vehicle from './Vehicle.tsx';
-import Staff from './Staff.tsx';
+import Sidebar from '../component/SideBar';
+import Vehicle from './Vehicle';
+import Staff from './Staff';
+import Equipment from './Equipment';
 
 const HomePage: React.FC = () => {
     const [dateTime, setDateTime] = useState({
@@ -44,6 +45,7 @@ const HomePage: React.FC = () => {
                     <Routes>
                         <Route path="vehicle" element={<Vehicle />} />
                         <Route path="staff" element={<Staff />} />
+                        <Route path="equipment" element={<Equipment />} />
                         {/* Add other routes here */}
                     </Routes>
                 </div>

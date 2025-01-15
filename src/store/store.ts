@@ -1,13 +1,15 @@
 import { configureStore } from '@reduxjs/toolkit';
-import authReducer from '../slices/LoginSlice.ts';
-import vehicleReducer from '../slices/VehicleSlice.ts';
-import staffReducer from '../slices/StaffSlice.ts';
+import authReducer from '../slices/LoginSlice';
+import vehicleReducer from '../slices/VehicleSlice';
+import staffReducer from '../slices/StaffSlice';
+import equipmentReducer from '../slices/EquipmentSlice';
 
 export const store = configureStore({
     reducer: {
         auth: authReducer,
         vehicle: vehicleReducer,
         staff: staffReducer,
+        equipment: equipmentReducer,
     },
 });
 
