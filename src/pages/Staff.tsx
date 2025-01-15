@@ -1,14 +1,19 @@
 import React, { useState } from 'react';
 import { useDispatch, useSelector } from 'react-redux';
 import { RootState } from '../store/store.ts';
-import { selectStaff } from '../slices/StaffSlice.ts';
+import { selectStaff, deleteStaff } from '../slices/StaffSlice.ts';
 import AddStaff from '../popup/staff/AddStaff.tsx';
+import UpdateStaff from '../popup/staff/UpdateStaff.tsx';
+import ViewStaff from '../popup/staff/ViewStaff.tsx';
 import AddButton from '../component/AddButton.tsx';
+import DeleteButton from '../component/DeleteButton.tsx';
 
 const Staff: React.FC = () => {
     const staffList = useSelector((state: RootState) => state.staff.staffList);
     const dispatch = useDispatch();
     const [showAddStaff, setShowAddStaff] = useState(false);
+    const [showUpdateStaff, setShowUpdateStaff] = useState(false);
+    const [showViewStaff, setShowViewStaff] = useState(false);
 
     const handleAddStaff = () => {
         setShowAddStaff(true);
@@ -20,16 +25,24 @@ const Staff: React.FC = () => {
 
     const handleViewStaff = (id: string) => {
         dispatch(selectStaff(id));
-        // Add navigation logic if needed
+        setShowViewStaff(true);
+    };
+
+    const handleCloseViewStaff = () => {
+        setShowViewStaff(false);
     };
 
     const handleUpdateStaff = (id: string) => {
         dispatch(selectStaff(id));
-        // Add navigation logic if needed
+        setShowUpdateStaff(true);
+    };
+
+    const handleCloseUpdateStaff = () => {
+        setShowUpdateStaff(false);
     };
 
     const handleDeleteStaff = (id: string) => {
-        // Add delete logic here
+        dispatch(deleteStaff(id));
     };
 
     return (
@@ -44,10 +57,9 @@ const Staff: React.FC = () => {
             <table className="w-full border-collapse mt-5">
                 <thead>
                 <tr>
-                    <th className="p-3.5 text-left border-b border-gray-300 bg-gray-100 font-bold">Name</th>
-                    <th className="p-3.5 text-left border-b border-gray-300 bg-gray-100 font-bold">Role</th>
+                    <th className="p-3.5 text-left border-b border-gray-300 bg-gray-100 font-bold">First Name</th>
+                    <th className="p-3.5 text-left border-b border-gray-300 bg-gray-100 font-bold">Last Name</th>
                     <th className="p-3.5 text-left border-b border-gray-300 bg-gray-100 font-bold">Email</th>
-                    <th className="p-3.5 text-left border-b border-gray-300 bg-gray-100 font-bold">Gender</th>
                     <th className="p-3.5 text-left border-b border-gray-300 bg-gray-100 font-bold">Action</th>
                 </tr>
                 </thead>
@@ -55,9 +67,8 @@ const Staff: React.FC = () => {
                 {staffList.map(staff => (
                     <tr key={staff.id} className="even:bg-gray-100 hover:bg-gray-200">
                         <td className="p-3.5 border-b border-gray-300">{staff.firstName}</td>
-                        <td className="p-3.5 border-b border-gray-300">{staff.role}</td>
+                        <td className="p-3.5 border-b border-gray-300">{staff.lastName}</td>
                         <td className="p-3.5 border-b border-gray-300">{staff.email}</td>
-                        <td className="p-3.5 border-b border-gray-300">{staff.gender}</td>
                         <td className="p-3.5 border-b border-gray-300">
                             <button onClick={() => handleViewStaff(staff.id)} className="p-1.5 border-none bg-none cursor-pointer text-lg text-[#a0522d] focus:outline-none">
                                 <i className="bi bi-eye"></i>
@@ -65,15 +76,15 @@ const Staff: React.FC = () => {
                             <button onClick={() => handleUpdateStaff(staff.id)} className="p-1.5 border-none bg-none cursor-pointer text-lg text-[#a0522d] focus:outline-none">
                                 <i className="bi bi-pencil"></i>
                             </button>
-                            <button onClick={() => handleDeleteStaff(staff.id)} className="p-1.5 border-none bg-none cursor-pointer text-lg text-[#a0522d] focus:outline-none">
-                                <i className="bi bi-trash"></i>
-                            </button>
+                            <DeleteButton onClick={() => handleDeleteStaff(staff.id)} />
                         </td>
                     </tr>
                 ))}
                 </tbody>
             </table>
             {showAddStaff && <AddStaff onClose={handleCloseAddStaff} />}
+            {showUpdateStaff && <UpdateStaff onClose={handleCloseUpdateStaff} />}
+            {showViewStaff && <ViewStaff onClose={handleCloseViewStaff} />}
         </div>
     );
 };
