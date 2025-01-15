@@ -1,10 +1,11 @@
 import React, { useState } from 'react';
 import { useDispatch, useSelector } from 'react-redux';
-import { RootState } from '../store/store';
-import { selectStaff } from '../reducers/StaffReducer';
-import AddStaffPage from './AddStaffPage';
+import { RootState } from '../store/store.ts';
+import { selectStaff } from '../slices/StaffSlice.ts';
+import AddStaff from '../popup/staff/AddStaff.tsx';
+import AddButton from '../component/AddButton.tsx';
 
-const StaffPage: React.FC = () => {
+const Staff: React.FC = () => {
     const staffList = useSelector((state: RootState) => state.staff.staffList);
     const dispatch = useDispatch();
     const [showAddStaff, setShowAddStaff] = useState(false);
@@ -27,6 +28,10 @@ const StaffPage: React.FC = () => {
         // Add navigation logic if needed
     };
 
+    const handleDeleteStaff = (id: string) => {
+        // Add delete logic here
+    };
+
     return (
         <div className="w-full h-full p-5 rounded-lg shadow-md">
             <div className="flex justify-between items-center mb-5">
@@ -34,7 +39,7 @@ const StaffPage: React.FC = () => {
                     <input type="text" placeholder="Search by name" className="w-89 h-11 p-2.5 border border-gray-300 rounded text-lg" />
                     <button className="w-[100px] h-[35px] bg-[#fce7d9] text-[#8b4513] border-none rounded-full cursor-pointer text-sm transition-colors duration-300 hover:bg-[#f5ccb6]">Search</button>
                 </div>
-                <button onClick={handleAddStaff} className="w-[164px] h-[44px] bg-[#8b4513] text-white border-none rounded-l-full cursor-pointer text-lg transition-colors duration-300 hover:bg-[#a0522d]">Add Staff</button>
+                <AddButton label="Add Staff" onClick={handleAddStaff} />
             </div>
             <table className="w-full border-collapse mt-5">
                 <thead>
@@ -54,16 +59,23 @@ const StaffPage: React.FC = () => {
                         <td className="p-3.5 border-b border-gray-300">{staff.email}</td>
                         <td className="p-3.5 border-b border-gray-300">{staff.gender}</td>
                         <td className="p-3.5 border-b border-gray-300">
-                            <button onClick={() => handleViewStaff(staff.id)} className="p-1.5 border-none bg-none cursor-pointer text-lg text-[#a0522d] focus:outline-none">View</button>
-                            <button onClick={() => handleUpdateStaff(staff.id)} className="p-1.5 border-none bg-none cursor-pointer text-lg text-[#a0522d] focus:outline-none">Update</button>
+                            <button onClick={() => handleViewStaff(staff.id)} className="p-1.5 border-none bg-none cursor-pointer text-lg text-[#a0522d] focus:outline-none">
+                                <i className="bi bi-eye"></i>
+                            </button>
+                            <button onClick={() => handleUpdateStaff(staff.id)} className="p-1.5 border-none bg-none cursor-pointer text-lg text-[#a0522d] focus:outline-none">
+                                <i className="bi bi-pencil"></i>
+                            </button>
+                            <button onClick={() => handleDeleteStaff(staff.id)} className="p-1.5 border-none bg-none cursor-pointer text-lg text-[#a0522d] focus:outline-none">
+                                <i className="bi bi-trash"></i>
+                            </button>
                         </td>
                     </tr>
                 ))}
                 </tbody>
             </table>
-            {showAddStaff && <AddStaffPage onClose={handleCloseAddStaff} />}
+            {showAddStaff && <AddStaff onClose={handleCloseAddStaff} />}
         </div>
     );
 };
 
-export default StaffPage;
+export default Staff;

@@ -1,9 +1,9 @@
 import React, { useState } from 'react';
 import { useDispatch, useSelector } from 'react-redux';
 import { Link, useNavigate } from 'react-router-dom';
-import type { RootState } from '../store/store';
+import type { RootState } from '../store/store.ts';
 import { User, Lock } from 'lucide-react';
-import { loginFailure, loginStart, loginSuccess } from '../reducers/LoginReducer.ts';
+import { loginFailure, loginStart, loginSuccess } from '../slices/LoginSlice.ts';
 
 const LoginForm: React.FC = () => {
     const [credentials, setCredentials] = useState({
