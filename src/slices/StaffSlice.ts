@@ -37,6 +37,9 @@ const staffSlice = createSlice({
                 state.staffList[index] = action.payload;
             }
         },
+        deleteStaff: (state, action: PayloadAction<string>) => {
+            state.staffList = state.staffList.filter(staff => staff.id !== action.payload);
+        },
         selectStaff: (state, action: PayloadAction<string>) => {
             state.selectedStaff = state.staffList.find(s => s.id === action.payload) || null;
         },
@@ -46,5 +49,5 @@ const staffSlice = createSlice({
     },
 });
 
-export const { addStaff, updateStaff, selectStaff, clearSelectedStaff } = staffSlice.actions;
+export const { addStaff, updateStaff,deleteStaff, selectStaff, clearSelectedStaff } = staffSlice.actions;
 export default staffSlice.reducer;
