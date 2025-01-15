@@ -1,12 +1,13 @@
 import React, { useState } from 'react';
 import { useDispatch } from 'react-redux';
-import { addStaff } from '../reducers/StaffReducer';
+import { addStaff } from '../../slices/StaffSlice.ts';
+import SaveButton from '../../component/SaveButton.tsx';
 
 interface AddStaffProps {
     onClose: () => void;
 }
 
-const AddStaffPage: React.FC<AddStaffProps> = ({ onClose }) => {
+const AddStaff: React.FC<AddStaffProps> = ({ onClose }) => {
     const [staff, setStaff] = useState({
         id: '',
         firstName: '',
@@ -162,7 +163,7 @@ const AddStaffPage: React.FC<AddStaffProps> = ({ onClose }) => {
                         </select>
                     </div>
                     <div className="flex justify-between mt-4 w-full">
-                        <button type="submit" className="w-1/2 h-10 bg-[#8b4513] text-white rounded mr-2">Save</button>
+                        <SaveButton label="Save" onClick={handleSubmit} />
                         <button type="button" className="w-1/2 h-10 bg-[#8b4513] text-white rounded ml-2" onClick={onClose}>Back</button>
                     </div>
                 </form>
@@ -171,4 +172,4 @@ const AddStaffPage: React.FC<AddStaffProps> = ({ onClose }) => {
     );
 };
 
-export default AddStaffPage;
+export default AddStaff;

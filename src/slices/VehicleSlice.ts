@@ -32,6 +32,9 @@ const vehicleSlice = createSlice({
                 state.vehicles[index] = action.payload;
             }
         },
+        deleteVehicle: (state, action: PayloadAction<string>) => {
+            state.vehicles = state.vehicles.filter(v => v.licensePlate !== action.payload);
+        },
         selectVehicle: (state, action: PayloadAction<string>) => {
             state.selectedVehicle = state.vehicles.find(v => v.licensePlate === action.payload) || null;
         },
@@ -41,5 +44,5 @@ const vehicleSlice = createSlice({
     },
 });
 
-export const { addVehicle, updateVehicle, selectVehicle, clearSelectedVehicle } = vehicleSlice.actions;
+export const { addVehicle, updateVehicle, deleteVehicle, selectVehicle, clearSelectedVehicle } = vehicleSlice.actions;
 export default vehicleSlice.reducer;

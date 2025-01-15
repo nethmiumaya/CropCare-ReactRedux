@@ -55,7 +55,7 @@ const SignUp: React.FC = () => {
                     <div className="top">
                         <span>
                             Already have an account?
-                            <a href="/">Log In</a>
+                            <a href="/public">Log In</a>
                         </span>
                     </div>
                 </div>

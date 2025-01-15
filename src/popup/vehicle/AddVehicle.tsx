@@ -1,7 +1,9 @@
 import React, { useState } from 'react';
-import { useDispatch } from 'react-redux';
-import { addVehicle } from '../../reducers/VehicleReducer.ts';
+import { useDispatch, useSelector } from 'react-redux';
+import { RootState } from '../../store/store.ts';
+import { addVehicle } from '../../slices/VehicleSlice.ts';
 import { useNavigate } from 'react-router-dom';
+import SaveButton from '../../component/SaveButton.tsx';
 
 interface AddVehicleProps {
     onClose: () => void;
@@ -19,11 +21,12 @@ const AddVehicle: React.FC<AddVehicleProps> = ({ onClose }) => {
 
     const dispatch = useDispatch();
     const navigate = useNavigate();
+    const staffList = useSelector((state: RootState) => state.staff.staffList);
 
     const handleSubmit = (e: React.FormEvent) => {
         e.preventDefault();
         dispatch(addVehicle(vehicle));
-        navigate('/vehicle');
+        navigate('/home/vehicle'); // Navigate to the vehicle page
     };
 
     return (
@@ -100,11 +103,15 @@ const AddVehicle: React.FC<AddVehicleProps> = ({ onClose }) => {
                             className="w-full h-10 p-1.5 border border-gray-300 rounded-lg text-sm"
                         >
                             <option value="">Select Staff</option>
-                            {/* Add staff options here */}
+                            {staffList.map(staff => (
+                                <option key={staff.id} value={staff.id}>
+                                    {staff.firstName} {staff.lastName}
+                                </option>
+                            ))}
                         </select>
                     </div>
                     <div className="flex justify-between mt-4 w-full">
-                        <button type="submit" className="w-1/2 h-10 bg-[#8b4513] text-white rounded mr-2">Save</button>
+                        <SaveButton label="Save" onClick={handleSubmit} />
                         <button type="button" className="w-1/2 h-10 bg-[#8b4513] text-white rounded ml-2" onClick={onClose}>Back</button>
                     </div>
                 </form>

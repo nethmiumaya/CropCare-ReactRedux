@@ -1,15 +1,19 @@
 import React, { useState } from 'react';
 import { useDispatch, useSelector } from 'react-redux';
-import { RootState } from '../../store/store.ts';
-import { selectVehicle } from '../../reducers/VehicleReducer.ts';
-import { useNavigate } from 'react-router-dom';
-import AddVehicle from './AddVehicle.tsx';
+import { RootState } from '../store/store.ts';
+import { selectVehicle, deleteVehicle } from '../slices/VehicleSlice.ts';
+import AddVehicle from '../popup/vehicle/AddVehicle.tsx';
+import UpdateVehicle from '../popup/vehicle/UpdateVehicle.tsx';
+import AddButton from '../component/AddButton.tsx';
+import DeleteButton from '../component/DeleteButton.tsx';
+import ViewVehicle from '../popup/vehicle/ViewVehicle.tsx';
 
-const VehiclePage: React.FC = () => {
+const Vehicle: React.FC = () => {
     const vehicles = useSelector((state: RootState) => state.vehicle.vehicles);
     const dispatch = useDispatch();
-    const navigate = useNavigate();
     const [showAddVehicle, setShowAddVehicle] = useState(false);
+    const [showUpdateVehicle, setShowUpdateVehicle] = useState(false);
+    const [showViewVehicle, setShowViewVehicle] = useState(false);
 
     const handleAddVehicle = () => {
         setShowAddVehicle(true);
@@ -21,12 +25,24 @@ const VehiclePage: React.FC = () => {
 
     const handleViewVehicle = (licensePlate: string) => {
         dispatch(selectVehicle(licensePlate));
-        navigate('/view-vehicle');
+        setShowViewVehicle(true);
+    };
+
+    const handleCloseViewVehicle = () => {
+        setShowViewVehicle(false);
     };
 
     const handleUpdateVehicle = (licensePlate: string) => {
         dispatch(selectVehicle(licensePlate));
-        navigate('/update-vehicle');
+        setShowUpdateVehicle(true);
+    };
+
+    const handleCloseUpdateVehicle = () => {
+        setShowUpdateVehicle(false);
+    };
+
+    const handleDeleteVehicle = (licensePlate: string) => {
+        dispatch(deleteVehicle(licensePlate));
     };
 
     return (
@@ -42,7 +58,7 @@ const VehiclePage: React.FC = () => {
                     </select>
                     <button className="w-[100px] h-[35px] bg-[#fce7d9] text-[#8b4513] border-none rounded-full cursor-pointer text-sm transition-colors duration-300 hover:bg-[#f5ccb6]">Search</button>
                 </div>
-                <button onClick={handleAddVehicle} className="w-[164px] h-[44px] bg-[#8b4513] text-white border-none rounded-l-full cursor-pointer text-lg transition-colors duration-300 hover:bg-[#a0522d]">Add Vehicle</button>
+                <AddButton label="Add Vehicle" onClick={handleAddVehicle} />
             </div>
             <table className="w-full border-collapse mt-5">
                 <thead>
@@ -62,16 +78,23 @@ const VehiclePage: React.FC = () => {
                         <td className="p-3.5 border-b border-gray-300">{vehicle.category}</td>
                         <td className="p-3.5 border-b border-gray-300">{vehicle.status}</td>
                         <td className="p-3.5 border-b border-gray-300">
-                            <button onClick={() => handleViewVehicle(vehicle.licensePlate)} className="p-1.5 border-none bg-none cursor-pointer text-lg text-[#a0522d] focus:outline-none">View</button>
-                            <button onClick={() => handleUpdateVehicle(vehicle.licensePlate)} className="p-1.5 border-none bg-none cursor-pointer text-lg text-[#a0522d] focus:outline-none">Update</button>
+                            <button onClick={() => handleViewVehicle(vehicle.licensePlate)} className="p-1.5 border-none bg-none cursor-pointer text-lg text-[#a0522d] focus:outline-none">
+                                <i className="bi bi-eye"></i>
+                            </button>
+                            <button onClick={() => handleUpdateVehicle(vehicle.licensePlate)} className="p-1.5 border-none bg-none cursor-pointer text-lg text-[#a0522d] focus:outline-none">
+                                <i className="bi bi-pencil"></i>
+                            </button>
+                            <DeleteButton onClick={() => handleDeleteVehicle(vehicle.licensePlate)} />
                         </td>
                     </tr>
                 ))}
                 </tbody>
             </table>
             {showAddVehicle && <AddVehicle onClose={handleCloseAddVehicle} />}
+            {showUpdateVehicle && <UpdateVehicle onClose={handleCloseUpdateVehicle} />}
+            {showViewVehicle && <ViewVehicle onClose={handleCloseViewVehicle} />}
         </div>
     );
 };
 
-export default VehiclePage;
+export default Vehicle;

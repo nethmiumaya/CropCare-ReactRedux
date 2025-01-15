@@ -2,13 +2,13 @@ import { BrowserRouter as Router, Route, Routes } from 'react-router-dom';
 import { Provider } from 'react-redux';
 import { store } from './store/store';
 import RootLayout from './component/RootLayout';
-import LoginForm from './component/LoginForm';
-import SignUp from './component/SignUp';
-import HomePage from './component/HomePage';
-import AddVehicle from './component/vehicle/AddVehicle.tsx';
-import UpdateVehicle from './component/vehicle/UpdateVehicle.tsx';
-import ViewVehicle from './component/vehicle/VewVehicle.tsx';
-import StaffPage from './component/StaffPage.tsx';
+import LoginForm from './pages/LoginForm.tsx';
+import SignUp from './pages/SignUp.tsx';
+import HomePage from './pages/HomePage.tsx';
+import AddVehicle from './popup/vehicle/AddVehicle.tsx';
+import UpdateVehicle from './popup/vehicle/UpdateVehicle.tsx';
+import ViewVehicle from './popup/vehicle/ViewVehicle.tsx';
+import Staff from './pages/Staff.tsx';
 
 function App() {
     return (
@@ -22,7 +22,7 @@ function App() {
                         <Route path="add-vehicle" element={<AddVehicle />} />
                         <Route path="update-vehicle" element={<UpdateVehicle />} />
                         <Route path="view-vehicle" element={<ViewVehicle />} />
-                        <Route path="staff" element={<StaffPage />} />
+                        <Route path="staff" element={<Staff />} />
                     </Route>
                 </Routes>
             </Router>
