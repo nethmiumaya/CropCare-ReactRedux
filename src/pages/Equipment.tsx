@@ -4,11 +4,15 @@ import { RootState } from '../store/store';
 import { deleteEquipment, selectEquipment } from '../slices/EquipmentSlice';
 import AddButton from '../component/AddButton';
 import AddEquipment from '../popup/equipment/AddEquipment';
+import UpdateEquipment from '../popup/equipment/UpdateEquipment';
+import ViewEquipment from '../popup/equipment/ViewEquipment';
 
 const Equipment: React.FC = () => {
     const equipmentList = useSelector((state: RootState) => state.equipment.equipmentList);
     const dispatch = useDispatch();
     const [showAddEquipment, setShowAddEquipment] = useState(false);
+    const [showUpdateEquipment, setShowUpdateEquipment] = useState(false);
+    const [showViewEquipment, setShowViewEquipment] = useState(false);
 
     const handleAddEquipment = () => {
         setShowAddEquipment(true);
@@ -24,12 +28,20 @@ const Equipment: React.FC = () => {
 
     const handleViewEquipment = (id: string) => {
         dispatch(selectEquipment(id));
-        // Logic to show view equipment popup
+        setShowViewEquipment(true);
+    };
+
+    const handleCloseViewEquipment = () => {
+        setShowViewEquipment(false);
     };
 
     const handleUpdateEquipment = (id: string) => {
         dispatch(selectEquipment(id));
-        // Logic to show update equipment popup
+        setShowUpdateEquipment(true);
+    };
+
+    const handleCloseUpdateEquipment = () => {
+        setShowUpdateEquipment(false);
     };
 
     return (
@@ -77,6 +89,8 @@ const Equipment: React.FC = () => {
                 </tbody>
             </table>
             {showAddEquipment && <AddEquipment onClose={handleCloseAddEquipment} />}
+            {showUpdateEquipment && <UpdateEquipment onClose={handleCloseUpdateEquipment} />}
+            {showViewEquipment && <ViewEquipment onClose={handleCloseViewEquipment} />}
         </div>
     );
 };
