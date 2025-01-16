@@ -1,9 +1,9 @@
 import React, { useState } from 'react';
 import { useDispatch, useSelector } from 'react-redux';
 import { RootState } from '../store/store';
-import { selectEquipment, deleteEquipment } from '../slices/EquipmentSlice';
+import { deleteEquipment, selectEquipment } from '../slices/EquipmentSlice';
 import AddButton from '../component/AddButton';
-import DeleteButton from '../component/DeleteButton';
+import AddEquipment from '../popup/equipment/AddEquipment';
 
 const Equipment: React.FC = () => {
     const equipmentList = useSelector((state: RootState) => state.equipment.equipmentList);
@@ -22,11 +22,26 @@ const Equipment: React.FC = () => {
         dispatch(deleteEquipment(id));
     };
 
+    const handleViewEquipment = (id: string) => {
+        dispatch(selectEquipment(id));
+        // Logic to show view equipment popup
+    };
+
+    const handleUpdateEquipment = (id: string) => {
+        dispatch(selectEquipment(id));
+        // Logic to show update equipment popup
+    };
+
     return (
         <div className="w-full h-full p-5 rounded-lg shadow-md">
             <div className="flex justify-between items-center mb-5">
                 <div className="flex items-center gap-2.5">
                     <input type="text" placeholder="Search by name" className="w-89 h-11 p-2.5 border border-gray-300 rounded text-lg" />
+                    <select className="w-70 h-11 p-2.5 border border-gray-300 rounded text-lg">
+                        <option value="">Type</option>
+                        <option value="Type1">Type1</option>
+                        <option value="Type2">Type2</option>
+                    </select>
                     <button className="w-[100px] h-[35px] bg-[#fce7d9] text-[#8b4513] border-none rounded-full cursor-pointer text-sm transition-colors duration-300 hover:bg-[#f5ccb6]">Search</button>
                 </div>
                 <AddButton label="Add Equipment" onClick={handleAddEquipment} />
@@ -47,6 +62,12 @@ const Equipment: React.FC = () => {
                         <td className="p-3.5 border-b border-gray-300">{equipment.type}</td>
                         <td className="p-3.5 border-b border-gray-300">{equipment.status}</td>
                         <td className="p-3.5 border-b border-gray-300">
+                            <button onClick={() => handleViewEquipment(equipment.id)} className="p-1.5 border-none bg-none cursor-pointer text-lg text-[#a0522d] focus:outline-none">
+                                <i className="bi bi-eye"></i>
+                            </button>
+                            <button onClick={() => handleUpdateEquipment(equipment.id)} className="p-1.5 border-none bg-none cursor-pointer text-lg text-[#a0522d] focus:outline-none">
+                                <i className="bi bi-pencil"></i>
+                            </button>
                             <button onClick={() => handleDeleteEquipment(equipment.id)} className="p-1.5 border-none bg-none cursor-pointer text-lg text-[#a0522d] focus:outline-none">
                                 <i className="bi bi-trash"></i>
                             </button>
@@ -55,7 +76,7 @@ const Equipment: React.FC = () => {
                 ))}
                 </tbody>
             </table>
-            {showAddEquipment && <div>Add Equipment Modal</div>}
+            {showAddEquipment && <AddEquipment onClose={handleCloseAddEquipment} />}
         </div>
     );
 };
