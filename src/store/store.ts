@@ -3,6 +3,7 @@ import authReducer from '../slices/LoginSlice';
 import vehicleReducer from '../slices/VehicleSlice';
 import staffReducer from '../slices/StaffSlice';
 import equipmentReducer from '../slices/EquipmentSlice';
+import fieldReducer from '../slices/FieldSlice';
 
 export const store = configureStore({
     reducer: {
@@ -10,6 +11,7 @@ export const store = configureStore({
         vehicle: vehicleReducer,
         staff: staffReducer,
         equipment: equipmentReducer,
+        field: fieldReducer,
     },
 });
 
