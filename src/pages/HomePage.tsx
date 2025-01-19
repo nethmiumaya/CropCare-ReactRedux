@@ -1,4 +1,4 @@
-import React, { useEffect, useState } from 'react';
+import React from 'react';
 import { Route, Routes } from 'react-router-dom';
 import Sidebar from '../component/SideBar';
 import Vehicle from './Vehicle';
@@ -6,31 +6,11 @@ import Staff from './Staff';
 import Equipment from './Equipment';
 import Field from "./Field";
 import CropPage from "./Crop";
-import MonitoryLogPage from "./MonitoryLog.tsx";
+import MonitoryLogPage from "./MonitoryLog";
 import User from "./User";
+import Dashboard from "./Dashboard";
 
 const HomePage: React.FC = () => {
-    const [dateTime, setDateTime] = useState({
-        date: '',
-        time: '',
-    });
-
-    useEffect(() => {
-        const updateDateTime = () => {
-            const now = new Date();
-            const dateOptions: Intl.DateTimeFormatOptions = { weekday: 'long', month: 'long', day: 'numeric', year: 'numeric' };
-            const timeOptions: Intl.DateTimeFormatOptions = { hour: '2-digit', minute: '2-digit', second: '2-digit', hour12: false };
-            setDateTime({
-                date: now.toLocaleDateString('en-US', dateOptions),
-                time: now.toLocaleTimeString('en-US', timeOptions),
-            });
-        };
-
-        updateDateTime();
-        const interval = setInterval(updateDateTime, 1000);
-        return () => clearInterval(interval);
-    }, []);
-
     return (
         <div className="flex h-screen">
             <Sidebar />
@@ -41,8 +21,8 @@ const HomePage: React.FC = () => {
                         <p className="text-gray-600 text-lg">Nethmi Gunasekara</p>
                     </div>
                     <div className="text-right">
-                        <p id="current-date" className="text-gray-800 text-lg">{dateTime.date}</p>
-                        <p id="current-time" className="text-gray-800 text-lg">{dateTime.time}</p>
+                        <p id="current-date" className="text-gray-800 text-lg">{new Date().toLocaleDateString()}</p>
+                        <p id="current-time" className="text-gray-800 text-lg">{new Date().toLocaleTimeString()}</p>
                     </div>
                 </div>
                 <div className="w-full h-full mt-4 bg-white bg-opacity-70 rounded-lg">
@@ -52,8 +32,9 @@ const HomePage: React.FC = () => {
                         <Route path="equipment" element={<Equipment />} />
                         <Route path="field" element={<Field />} />
                         <Route path="crop" element={<CropPage />} />
-                        <Route path="monitoring-log" element={<MonitoryLogPage/>} />
+                        <Route path="monitoring-log" element={<MonitoryLogPage />} />
                         <Route path="user" element={<User />} />
+                        <Route path="dashboard" element={<Dashboard />} />
                     </Routes>
                 </div>
             </div>

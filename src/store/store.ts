@@ -7,6 +7,8 @@ import fieldReducer from '../slices/FieldSlice';
 import cropReducer from '../slices/CropSlice';
 import monitoryLogReducer from '../slices/MonitoryLogSlice';
 import userReducer from '../slices/UserSlice';
+import activityReducer from '../slices/ActivitySlice';
+import statsReducer from '../slices/StateSlice.ts';
 
 export const store = configureStore({
     reducer: {
@@ -18,6 +20,8 @@ export const store = configureStore({
         crop: cropReducer,
         log: monitoryLogReducer,
         user: userReducer,
+        activity: activityReducer,
+        stats: statsReducer,
     },
 });
 
