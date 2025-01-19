@@ -6,7 +6,6 @@ import LoginForm from './pages/LoginForm';
 import SignUp from './pages/SignUp';
 import HomePage from './pages/HomePage';
 
-
 function App() {
     return (
         <Provider store={store}>

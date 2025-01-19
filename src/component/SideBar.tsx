@@ -5,7 +5,6 @@ const Sidebar: React.FC = () => {
     const navigate = useNavigate();
 
     const handleLogout = () => {
-        // Perform any logout logic here (e.g., clearing authentication tokens)
         navigate('/');
     };
 
@@ -15,7 +14,7 @@ const Sidebar: React.FC = () => {
                 <img src="src/assets/real_logo.svg" alt="Crop Care Logo" className="w-30 h-auto" />
             </div>
             <nav className="flex flex-col gap-4 mt-8 flex-1">
-                <NavLink to="/home" className="bg-[#8b4513] text-white no-underline p-3 text-left text-lg transition-opacity duration-300 rounded-r-lg border-none hover:opacity-90 focus:outline-none">Dashboard</NavLink>
+                <NavLink to="/home/dashboard" className="bg-[#8b4513] text-white no-underline p-3 text-left text-lg transition-opacity duration-300 rounded-r-lg border-none hover:opacity-90 focus:outline-none">Dashboard</NavLink>
                 <NavLink to="/home/field" className="bg-[#8b4513] text-white no-underline p-3 text-left text-lg transition-opacity duration-300 rounded-r-lg border-none hover:opacity-90 focus:outline-none">Field</NavLink>
                 <NavLink to="/home/staff" className="bg-[#8b4513] text-white no-underline p-3 text-left text-lg transition-opacity duration-300 rounded-r-lg border-none hover:opacity-90 focus:outline-none">Staff</NavLink>
                 <NavLink to="/home/crop" className="bg-[#8b4513] text-white no-underline p-3 text-left text-lg transition-opacity duration-300 rounded-r-lg border-none hover:opacity-90 focus:outline-none">Crop</NavLink>
