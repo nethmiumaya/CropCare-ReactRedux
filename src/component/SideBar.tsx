@@ -22,7 +22,7 @@ const Sidebar: React.FC = () => {
                 <NavLink to="/home/equipment" className="bg-[#8b4513] text-white no-underline p-3 text-left text-lg transition-opacity duration-300 rounded-r-lg border-none hover:opacity-90 focus:outline-none">Equipment</NavLink>
                 <NavLink to="/home/vehicle" className="bg-[#8b4513] text-white no-underline p-3 text-left text-lg transition-opacity duration-300 rounded-r-lg border-none hover:opacity-90 focus:outline-none">Vehicle</NavLink>
                 <NavLink to="/home/monitoring-log" className="bg-[#8b4513] text-white no-underline p-3 text-left text-lg transition-opacity duration-300 rounded-r-lg border-none hover:opacity-90 focus:outline-none">Monitoring Log</NavLink>
-                <NavLink to="/home/users" className="bg-[#8b4513] text-white no-underline p-3 text-left text-lg transition-opacity duration-300 rounded-r-lg border-none hover:opacity-90 focus:outline-none">Users</NavLink>
+                <NavLink to="/home/user" className="bg-[#8b4513] text-white no-underline p-3 text-left text-lg transition-opacity duration-300 rounded-r-lg border-none hover:opacity-90 focus:outline-none">Users</NavLink>
                 <button className="mt-auto bg-[#8b4513] text-white no-underline p-3 text-left text-lg transition-opacity duration-300 rounded-r-lg border-none hover:opacity-90 focus:outline-none" onClick={handleLogout}>Logout</button>
             </nav>
         </div>

@@ -24,7 +24,7 @@ const ViewFieldPage: React.FC<ViewFieldPageProps> = ({ onClose }) => {
             <div className="w-full max-w-3xl bg-white p-6 rounded-lg shadow-lg">
                 <header className="flex justify-between items-center mb-4 bg-[#fff6ee] p-4 rounded-t-lg">
                     <h1 className="text-xl font-bold text-[#8b4513]">View Field</h1>
-                    <img src="/assets/images/real_logo.svg" alt="Crop Care Logo" className="w-10 h-10" />
+                    <img src="/src/assets/real_logo.svg" alt="Crop Care Logo" className="w-10 h-10" />
                 </header>
                 <div className="bg-[#fff6ee] p-4 rounded-b-lg">
                     <div className="flex flex-wrap gap-4 mb-4">
