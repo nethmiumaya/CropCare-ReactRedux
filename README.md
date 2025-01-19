@@ -5,7 +5,7 @@
     <img src="src/assets/real_logo.svg" alt="CropCare Logo" width="70" height="70">
   </a>
 
-  <h2 align="center">CropCare</h2>
+<h2 align="center">CropCare</h2>
 
   <p align="center">
    The <strong>CropCare</strong> project is a comprehensive frontend application aimed at assisting farmers in managing their agricultural activities. The app provides crop monitoring, predictive analytics, and other essential farming utilities. Built using modern web technologies, it offers a user-friendly interface with seamless performance.
@@ -41,16 +41,20 @@
 ### Features
 
 - **Crop Monitoring:**
-  - Real-time updates on crop health and environmental conditions.
+    - Real-time updates on crop health and environmental conditions.
 
 - **Predictive Analytics:**
-  - Provides data-driven insights to optimize farming strategies.
+    - Provides data-driven insights to optimize farming strategies.
 
 - **User-Friendly Interface:**
-  - Intuitive and responsive design suitable for various devices.
+    - Intuitive and responsive design suitable for various devices.
 
 - **Integration with APIs:**
-  - Supports external agricultural data sources for enhanced functionality.
+    - Supports external agricultural data sources for enhanced functionality.
+
+### Screenshots
+
+Project UI screenshots are available [here](https://github.com/nethmiumaya/CropCare-ReactRedux/tree/dev/src/assets/cropcare-images).
 
 <p align="right">(<a href="#readme-top">back to top</a>)</p>
 
