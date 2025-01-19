@@ -26,6 +26,12 @@ const fieldSlice = createSlice({
         addField: (state, action: PayloadAction<Field>) => {
             state.fields.push(action.payload);
         },
+        updateField: (state, action: PayloadAction<Field>) => {
+            const index = state.fields.findIndex(field => field.id === action.payload.id);
+            if (index !== -1) {
+                state.fields[index] = action.payload;
+            }
+        },
         deleteField: (state, action: PayloadAction<string>) => {
             state.fields = state.fields.filter(field => field.id !== action.payload);
         },
@@ -38,5 +44,5 @@ const fieldSlice = createSlice({
     },
 });
 
-export const { addField, deleteField, selectField, clearSelectedField } = fieldSlice.actions;
+export const { addField, deleteField,updateField, selectField, clearSelectedField } = fieldSlice.actions;
 export default fieldSlice.reducer;

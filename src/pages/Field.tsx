@@ -1,14 +1,19 @@
 import React, { useState } from 'react';
 import { useDispatch, useSelector } from 'react-redux';
 import { RootState } from '../store/store';
-import { deleteField } from '../slices/FieldSlice';
+import { deleteField, selectField } from '../slices/FieldSlice';
 import AddButton from '../component/AddButton';
 import AddFieldPage from '../popup/field/AddField';
+import DeleteButton from "../component/DeleteButton.tsx";
+import UpdateFieldPage from "../popup/field/UpdateField.tsx";
+import ViewFieldPage from "../popup/field/ViewField.tsx";
 
 const FieldPage: React.FC = () => {
     const fields = useSelector((state: RootState) => state.field.fields);
-    const dispatch = useDispatch();
+      const dispatch = useDispatch();
     const [showAddField, setShowAddField] = useState(false);
+    const [showUpdateField, setShowUpdateField] = useState(false);
+    const [showViewField, setShowViewField] = useState(false);
 
     const handleAddField = () => {
         setShowAddField(true);
@@ -16,6 +21,22 @@ const FieldPage: React.FC = () => {
 
     const handleCloseAddField = () => {
         setShowAddField(false);
+    };
+
+    const handleUpdateField = (id: string) => {
+        dispatch(selectField(id));
+        setShowUpdateField(true);
+    };
+    const handleViewField = (id: string) => {
+        dispatch(selectField(id));
+        setShowViewField(true);
+    };
+
+    const handleCloseViewField = () => {
+        setShowViewField(false);
+    };
+    const handleCloseUpdateField = () => {
+        setShowUpdateField(false);
     };
 
     const handleDeleteField = (id: string) => {
@@ -55,13 +76,23 @@ const FieldPage: React.FC = () => {
                             {field.images[1] && <img src={field.images[1]} alt="Another Field" className="w-20 h-20 object-cover rounded-lg" />}
                         </td>
                         <td className="p-3.5 border-b border-gray-300">
-                            <button onClick={() => handleDeleteField(field.id)} className="action-button p-1.5 border-none bg-none cursor-pointer text-lg text-[#a0522d] focus:outline-none">Delete</button>
+                            <button onClick={() => handleViewField(field.id)}
+                                    className="p-1.5 border-none bg-none cursor-pointer text-lg text-[#a0522d] focus:outline-none">
+                                <i className="bi bi-eye"></i>
+                            </button>
+                            <button onClick={() => handleUpdateField(field.id)}
+                                    className="p-1.5 border-none bg-none cursor-pointer text-lg text-[#a0522d] focus:outline-none">
+                                <i className="bi bi-pencil"></i>
+                            </button>
+                            <DeleteButton onClick={() => handleDeleteField(field.id)}/>
                         </td>
                     </tr>
                 ))}
                 </tbody>
             </table>
-            {showAddField && <AddFieldPage onClose={handleCloseAddField} />}
+            {showAddField && <AddFieldPage onClose={handleCloseAddField}/>}
+            {showUpdateField && <UpdateFieldPage onClose={handleCloseUpdateField}/>}
+            {showViewField && <ViewFieldPage onClose={handleCloseViewField}/>}
         </div>
     );
 };
