@@ -5,6 +5,7 @@ import staffReducer from '../slices/StaffSlice';
 import equipmentReducer from '../slices/EquipmentSlice';
 import fieldReducer from '../slices/FieldSlice';
 import cropReducer from '../slices/CropSlice';
+import monitoryLogReducer from '../slices/MonitoryLogSlice';
 
 export const store = configureStore({
     reducer: {
@@ -14,6 +15,7 @@ export const store = configureStore({
         equipment: equipmentReducer,
         field: fieldReducer,
         crop: cropReducer,
+        log: monitoryLogReducer,
     },
 });
 

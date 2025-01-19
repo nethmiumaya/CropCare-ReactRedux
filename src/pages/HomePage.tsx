@@ -6,6 +6,7 @@ import Staff from './Staff';
 import Equipment from './Equipment';
 import Field from "./Field";
 import CropPage from "./Crop";
+import MonitoryLogPage from "./MonitoryLog.tsx";
 
 const HomePage: React.FC = () => {
     const [dateTime, setDateTime] = useState({
@@ -50,6 +51,7 @@ const HomePage: React.FC = () => {
                         <Route path="equipment" element={<Equipment />} />
                         <Route path="field" element={<Field />} />
                         <Route path="crop" element={<CropPage />} />
+                        <Route path="monitoring-log" element={<MonitoryLogPage/>} />
                     </Routes>
                 </div>
             </div>
