@@ -4,6 +4,7 @@ import vehicleReducer from '../slices/VehicleSlice';
 import staffReducer from '../slices/StaffSlice';
 import equipmentReducer from '../slices/EquipmentSlice';
 import fieldReducer from '../slices/FieldSlice';
+import cropReducer from '../slices/CropSlice';
 
 export const store = configureStore({
     reducer: {
@@ -12,6 +13,7 @@ export const store = configureStore({
         staff: staffReducer,
         equipment: equipmentReducer,
         field: fieldReducer,
+        crop: cropReducer,
     },
 });
 
