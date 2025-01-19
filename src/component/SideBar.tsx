@@ -11,7 +11,7 @@ const Sidebar: React.FC = () => {
     return (
         <div className="w-[231px] h-screen bg-white bg-opacity-70 flex flex-col p-5">
             <div className="flex justify-center py-5">
-                <img src="src/assets/real_logo.svg" alt="Crop Care Logo" className="w-30 h-auto" />
+                <img src="/src/assets/real_logo.svg" alt="Crop Care Logo" className="w-30 h-auto" />
             </div>
             <nav className="flex flex-col gap-4 mt-8 flex-1">
                 <NavLink to="/home/dashboard" className="bg-[#8b4513] text-white no-underline p-3 text-left text-lg transition-opacity duration-300 rounded-r-lg border-none hover:opacity-90 focus:outline-none">Dashboard</NavLink>

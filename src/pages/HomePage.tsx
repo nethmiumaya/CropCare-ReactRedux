@@ -1,4 +1,4 @@
-import React from 'react';
+import React, {useEffect} from 'react';
 import { Route, Routes } from 'react-router-dom';
 import Sidebar from '../component/SideBar';
 import Vehicle from './Vehicle';
@@ -9,8 +9,13 @@ import CropPage from "./Crop";
 import MonitoryLogPage from "./MonitoryLog";
 import User from "./User";
 import Dashboard from "./Dashboard";
+import {useNavigate} from "react-router-dom";
 
 const HomePage: React.FC = () => {
+    const navigate = useNavigate();
+    useEffect(() => {
+        navigate('/home/dashboard');
+    }, []);
     return (
         <div className="flex h-screen">
             <Sidebar />

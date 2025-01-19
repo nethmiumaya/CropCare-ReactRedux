@@ -1,4 +1,4 @@
-import React, { useEffect } from 'react';
+import React, { useEffect, useRef } from 'react';
 import { useDispatch, useSelector } from 'react-redux';
 import { RootState } from '../store/store';
 import { fetchActivities } from '../slices/ActivitySlice';
@@ -9,16 +9,26 @@ const Dashboard: React.FC = () => {
     const dispatch = useDispatch();
     const activities = useSelector((state: RootState) => state.activity.activities);
     const stats = useSelector((state: RootState) => state.stats);
+    const chartRef = useRef<Chart | null>(null);
 
     useEffect(() => {
         dispatch(fetchActivities());
         dispatch(fetchStats());
         initializeChart();
+
+        return () => {
+            if (chartRef.current) {
+                chartRef.current.destroy();
+            }
+        };
     }, [dispatch]);
 
     const initializeChart = () => {
         const ctx = document.getElementById('cropHealthChart') as HTMLCanvasElement;
-        new Chart(ctx, {
+        if (chartRef.current) {
+            chartRef.current.destroy();
+        }
+        chartRef.current = new Chart(ctx, {
             type: 'line',
             data: {
                 labels: ['Jan', 'Feb', 'Mar', 'Apr', 'May', 'Jun'],
