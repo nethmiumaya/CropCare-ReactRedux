@@ -5,6 +5,7 @@ import Vehicle from './Vehicle';
 import Staff from './Staff';
 import Equipment from './Equipment';
 import Field from "./Field";
+import CropPage from "./Crop";
 
 const HomePage: React.FC = () => {
     const [dateTime, setDateTime] = useState({
@@ -47,8 +48,8 @@ const HomePage: React.FC = () => {
                         <Route path="vehicle" element={<Vehicle />} />
                         <Route path="staff" element={<Staff />} />
                         <Route path="equipment" element={<Equipment />} />
-                        <Route path="field" element={<Field/>} />
-                        {/* Add other routes here */}
+                        <Route path="field" element={<Field />} />
+                        <Route path="crop" element={<CropPage />} />
                     </Routes>
                 </div>
             </div>
