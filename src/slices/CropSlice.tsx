@@ -35,6 +35,7 @@ const cropSlice = createSlice({
         deleteCrop: (state, action: PayloadAction<string>) => {
             state.crops = state.crops.filter(crop => crop.id !== action.payload);
         },
+
         selectCrop: (state, action: PayloadAction<string>) => {
             state.selectedCrop = state.crops.find(crop => crop.id === action.payload) || null;
         },

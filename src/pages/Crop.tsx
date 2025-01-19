@@ -4,6 +4,9 @@ import { RootState } from '../store/store';
 import { deleteCrop, selectCrop } from '../slices/CropSlice';
 import AddButton from '../component/AddButton';
 import AddCropPage from '../popup/crop/AddCrop';
+import UpdateCropPage from '../popup/crop/UpdateCrop';
+import ViewCropPage from '../popup/crop/ViewCrop';
+import DeleteButton from "../component/DeleteButton.tsx";
 
 const CropPage: React.FC = () => {
     const crops = useSelector((state: RootState) => state.crop.crops);
@@ -25,6 +28,10 @@ const CropPage: React.FC = () => {
         setShowUpdateCrop(true);
     };
 
+    const handleCloseUpdateCrop = () => {
+        setShowUpdateCrop(false);
+    };
+
     const handleViewCrop = (id: string) => {
         dispatch(selectCrop(id));
         setShowViewCrop(true);
@@ -32,10 +39,6 @@ const CropPage: React.FC = () => {
 
     const handleCloseViewCrop = () => {
         setShowViewCrop(false);
-    };
-
-    const handleCloseUpdateCrop = () => {
-        setShowUpdateCrop(false);
     };
 
     const handleDeleteCrop = (id: string) => {
@@ -79,21 +82,23 @@ const CropPage: React.FC = () => {
                             <img src={crop.image} alt="Crop" className="w-20 h-20 object-cover rounded-lg" />
                         </td>
                         <td className="p-3.5 border-b border-gray-300">
-                            <button onClick={() => handleViewCrop(crop.id)} className="p-1.5 border-none bg-none cursor-pointer text-lg text-[#a0522d] focus:outline-none">
+                            <button onClick={() => handleViewCrop(crop.id)}
+                                    className="p-1.5 border-none bg-none cursor-pointer text-lg text-[#a0522d] focus:outline-none">
                                 <i className="bi bi-eye"></i>
                             </button>
-                            <button onClick={() => handleUpdateCrop(crop.id)} className="p-1.5 border-none bg-none cursor-pointer text-lg text-[#a0522d] focus:outline-none">
+                            <button onClick={() => handleUpdateCrop(crop.id)}
+                                    className="p-1.5 border-none bg-none cursor-pointer text-lg text-[#a0522d] focus:outline-none">
                                 <i className="bi bi-pencil"></i>
                             </button>
-                            <button onClick={() => handleDeleteCrop(crop.id)} className="p-1.5 border-none bg-none cursor-pointer text-lg text-[#a0522d] focus:outline-none">
-                                <i className="bi bi-trash"></i>
-                            </button>
+                            <DeleteButton onClick={() => handleDeleteCrop(crop.id)}/>
                         </td>
                     </tr>
                 ))}
                 </tbody>
             </table>
             {showAddCrop && <AddCropPage onClose={handleCloseAddCrop} />}
+            {showUpdateCrop && <UpdateCropPage onClose={handleCloseUpdateCrop} />}
+            {showViewCrop && <ViewCropPage onClose={handleCloseViewCrop} />}
         </div>
     );
 };
